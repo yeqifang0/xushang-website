@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>服务器散热联动智能调控软件 - 上海绪上科技有限公司</title>
+<meta name="description" content="面向数据中心与智算中心的服务器散热联动智能调控软件：多维感知、AI热负荷预测、多系统联动调控、能耗寻优，PUE最高降低15%。上海绪上科技有限公司出品。">
+<meta name="keywords" content="服务器散热,智能调控,数据中心制冷,PUE优化,机房节能,液冷调控,智算中心散热">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- ========== 导航栏 ========== -->
+<header class="nav" id="nav">
+  <div class="container nav-inner">
+    <a class="brand" href="#top" aria-label="返回顶部">
+      <svg class="brand-mark" viewBox="0 0 40 40" fill="none" aria-hidden="true">
+        <defs>
+          <linearGradient id="lg-brand" x1="0" y1="0" x2="40" y2="40">
+            <stop offset="0" stop-color="#00E5FF"/><stop offset="1" stop-color="#2E7DFF"/>
+          </linearGradient>
+        </defs>
+        <path d="M20 2.5 35.5 11v18L20 37.5 4.5 29V11L20 2.5Z" stroke="url(#lg-brand)" stroke-width="2.4" fill="rgba(0,229,255,.06)"/>
+        <rect x="13" y="14" width="14" height="2.4" rx="1.2" fill="#00E5FF"/>
+        <rect x="13" y="19" width="14" height="2.4" rx="1.2" fill="#5AB8FF"/>
+        <rect x="13" y="24" width="14" height="2.4" rx="1.2" fill="#2E7DFF"/>
+        <circle cx="27" cy="20" r="1.6" fill="#00E5FF"/>
+      </svg>
+      <span class="brand-text">
+        <b>绪上科技</b>
+        <i>服务器散热联动智能调控软件</i>
+      </span>
+    </a>
+    <nav class="nav-links" id="navLinks" aria-label="主导航">
+      <a href="#top">首页</a>
+      <a href="#features">核心功能</a>
+      <a href="#architecture">系统架构</a>
+      <a href="#scenarios">应用场景</a>
+      <a href="#pricing">价格方案</a>
+      <a href="#about">关于我们</a>
+      <a class="btn btn-primary btn-sm" href="order.html">立即订购</a>
+    </nav>
+    <button class="nav-toggle" id="navToggle" aria-label="打开菜单" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<main id="top">
+
+<!-- ========== Hero ========== -->
+<section class="hero">
+  <canvas id="heroCanvas" aria-hidden="true"></canvas>
+  <div class="hero-grid" aria-hidden="true"></div>
+  <div class="hero-glow hero-glow-1" aria-hidden="true"></div>
+  <div class="hero-glow hero-glow-2" aria-hidden="true"></div>
+
+  <div class="container hero-inner">
+    <div class="hero-copy">
+      <div class="hero-badge reveal">
+        <span class="pulse-dot"></span>
+        智能散热 · 绿色算力新范式
+      </div>
+      <h1 class="reveal">
+        服务器散热<br>
+        <span class="grad-text">联动智能调控</span>软件
+      </h1>
+      <p class="hero-sub reveal">
+        面向数据中心与智算中心的一体化散热调控平台。<br>
+        多维感知 × AI 热负荷预测 × 秒级联动执行，<br class="br-md">
+        让制冷系统随算力负载智能呼吸，PUE 最高降低 15%。
+      </p>
+      <div class="hero-cta reveal">
+        <a class="btn btn-primary btn-lg" href="order.html">
+          立即订购
+          <svg viewBox="0 0 16 16" width="15" height="15" fill="none" aria-hidden="true"><path d="M3 8h9m0 0-3.5-3.5M12 8l-3.5 3.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <a class="btn btn-ghost btn-lg" href="#contact">预约演示</a>
+      </div>
+      <div class="hero-trust reveal">
+        <span>已服务 <b>30+</b> 数据中心客户</span><i></i>
+        <span>覆盖 <b>50,000+</b> 机柜</span><i></i>
+        <span>累计节省电费 <b>¥2 亿+</b></span>
+      </div>
+    </div>
+
+    <!-- 机房联动调控示意图 -->
+    <div class="hero-visual reveal" aria-hidden="true">
+      <div class="hv-frame">
+        <svg viewBox="0 0 520 420" fill="none" class="hv-svg">
+          <defs>
+            <linearGradient id="lg-rack" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0" stop-color="rgba(46,125,255,.28)"/><stop offset="1" stop-color="rgba(0,229,255,.04)"/>
+            </linearGradient>
+            <linearGradient id="lg-cold" x1="0" y1="0" x2="1" y2="0">
+              <stop offset="0" stop-color="#00E5FF"/><stop offset="1" stop-color="#00E5FF" stop-opacity="0"/>
+            </linearGradient>
+            <linearGradient id="lg-hot" x1="1" y1="0" x2="0" y2="0">
+              <stop offset="0" stop-color="#FF7A59"/><stop offset="1" stop-color="#FF7A59" stop-opacity="0"/>
+            </linearGradient>
+            <linearGradient id="lg-heat" x1="0" y1="1" x2="0" y2="0">
+              <stop offset="0" stop-color="#2E7DFF"/><stop offset=".5" stop-color="#00E5FF"/><stop offset="1" stop-color="#FF7A59"/>
+            </linearGradient>
+          </defs>
+
+          <!-- 顶部标签 -->
+          <text x="18" y="26" fill="#8CA0C6" font-size="11" letter-spacing="2">AI 联动调控引擎 · LIVE</text>
+          <circle cx="232" cy="22" r="3.5" fill="#00D68F">
+            <animate attributeName="opacity" values="1;.25;1" dur="1.6s" repeatCount="indefinite"/>
+          </circle>
+
+          <!-- 机柜 -->
+          <g>
+            <rect x="40" y="52" width="96" height="240" rx="8" fill="url(#lg-rack)" stroke="rgba(120,160,255,.35)"/>
+            <rect x="152" y="52" width="96" height="240" rx="8" fill="url(#lg-rack)" stroke="rgba(120,160,255,.35)"/>
+            <rect x="264" y="52" width="96" height="240" rx="8" fill="url(#lg-rack)" stroke="rgba(120,160,255,.35)"/>
+            <!-- 服务器槽位 -->
+            <g fill="rgba(140,160,198,.5)">
+              <rect x="50" y="64" width="76" height="9" rx="2"/><rect x="50" y="80" width="76" height="9" rx="2"/>
+              <rect x="50" y="96" width="76" height="9" rx="2"/><rect x="50" y="112" width="76" height="9" rx="2"/>
+              <rect x="50" y="128" width="76" height="9" rx="2"/><rect x="50" y="144" width="76" height="9" rx="2"/>
+              <rect x="162" y="64" width="76" height="9" rx="2"/><rect x="162" y="80" width="76" height="9" rx="2"/>
+              <rect x="162" y="96" width="76" height="9" rx="2"/><rect x="162" y="112" width="76" height="9" rx="2"/>
+              <rect x="162" y="128" width="76" height="9" rx="2"/><rect x="162" y="144" width="76" height="9" rx="2"/>
+              <rect x="274" y="64" width="76" height="9" rx="2"/><rect x="274" y="80" width="76" height="9" rx="2"/>
+              <rect x="274" y="96" width="76" height="9" rx="2"/><rect x="274" y="112" width="76" height="9" rx="2"/>
+              <rect x="274" y="128" width="76" height="9" rx="2"/><rect x="274" y="144" width="76" height="9" rx="2"/>
+            </g>
+            <!-- 运行指示灯 -->
+            <g fill="#00E5FF">
+              <circle cx="116" cy="68.5" r="1.8"/><circle cx="116" cy="84.5" r="1.8"/><circle cx="116" cy="116.5" r="1.8"/>
+              <circle cx="228" cy="68.5" r="1.8"/><circle cx="228" cy="100.5" r="1.8"/><circle cx="228" cy="132.5" r="1.8"/>
+              <circle cx="340" cy="84.5" r="1.8"/><circle cx="340" cy="116.5" r="1.8"/><circle cx="340" cy="148.5" r="1.8"/>
+              <animate attributeName="opacity" values="1;.4;1" dur="2.2s" repeatCount="indefinite"/>
+            </g>
+          </g>
+
+          <!-- 冷通道气流（左向右） -->
+          <path class="flow-cold" d="M28 210 C 90 190, 150 230, 210 205 S 320 195, 380 210" stroke="url(#lg-cold)" stroke-width="2" stroke-dasharray="6 8" stroke-linecap="round"/>
+          <path class="flow-cold d2" d="M28 238 C 90 220, 150 258, 210 232 S 320 222, 380 238" stroke="url(#lg-cold)" stroke-width="2" stroke-dasharray="6 8" stroke-linecap="round"/>
+          <!-- 热通道气流（右向左） -->
+          <path class="flow-hot" d="M380 178 C 320 158, 260 196, 200 172 S 90 160, 28 178" stroke="url(#lg-hot)" stroke-width="2" stroke-dasharray="6 8" stroke-linecap="round"/>
+          <text x="30" y="330" fill="#00E5FF" font-size="11">COLD AISLE 24.3°C</text>
+          <text x="330" y="330" fill="#FF9E85" font-size="11">HOT AISLE 33.8°C</text>
+
+          <!-- 温度条 -->
+          <rect x="40" y="344" width="320" height="8" rx="4" fill="rgba(140,160,198,.15)"/>
+          <rect x="40" y="344" width="320" height="8" rx="4" fill="url(#lg-heat)" opacity=".85"/>
+          <rect x="200" y="338" width="3" height="20" rx="1.5" fill="#fff">
+            <animate attributeName="x" values="180;220;180" dur="6s" repeatCount="indefinite"/>
+          </rect>
+          <text x="40" y="376" fill="#8CA0C6" font-size="11">实时温度场分布 · 冷热点自动识别</text>
+
+          <!-- 空调/CDU 设备 -->
+          <g transform="translate(400,150)">
+            <rect x="0" y="0" width="86" height="120" rx="10" fill="rgba(10,21,38,.9)" stroke="rgba(120,160,255,.4)"/>
+            <text x="43" y="22" fill="#8CA0C6" font-size="10" text-anchor="middle">精密空调 · AI 调控</text>
+            <g class="fan" style="transform-origin:43px 62px">
+              <circle cx="43" cy="62" r="24" fill="none" stroke="rgba(0,229,255,.35)"/>
+              <path d="M43 62 L43 40 A22 22 0 0 1 62 50 Z" fill="rgba(0,229,255,.45)"/>
+              <path d="M43 62 L65 62 A22 22 0 0 1 55 81 Z" fill="rgba(46,125,255,.45)" transform="rotate(90 43 62)"/>
+              <path d="M43 62 L43 84 A22 22 0 0 1 24 74 Z" fill="rgba(0,229,255,.45)" transform="rotate(180 43 62)"/>
+              <path d="M43 62 L21 62 A22 22 0 0 1 31 43 Z" fill="rgba(46,125,255,.45)" transform="rotate(270 43 62)"/>
+            </g>
+            <circle cx="43" cy="62" r="4" fill="#E8F0FF"/>
+            <text x="43" y="106" fill="#00D68F" font-size="11" text-anchor="middle">转速 -18%</text>
+          </g>
+          <!-- 调控指令线 -->
+          <path class="flow-cold" d="M400 190 C 380 190, 370 200, 360 200" stroke="#00E5FF" stroke-width="1.6" stroke-dasharray="4 6"/>
+
+          <!-- 悬浮数据芯片（SVG 内固定坐标，避免遮挡） -->
+          <g transform="translate(246,2)">
+            <g class="svg-chip">
+              <rect width="138" height="48" rx="10" fill="rgba(8,15,30,.94)" stroke="rgba(0,229,255,.4)"/>
+              <text x="12" y="16" font-size="9" fill="#5E7096" letter-spacing="1.5">实时 PUE</text>
+              <text x="12" y="36" font-size="15" font-weight="700" fill="#E8F0FF">1.21</text>
+              <text x="55" y="36" font-size="10" fill="#00D68F">↓ 8.2%</text>
+            </g>
+          </g>
+          <g transform="translate(382,62)">
+            <g class="svg-chip ci-2">
+              <rect width="126" height="52" rx="10" fill="rgba(8,15,30,.94)" stroke="rgba(0,229,255,.4)"/>
+              <text x="12" y="16" font-size="9" fill="#5E7096" letter-spacing="1.5">AI 预测 · 30MIN</text>
+              <text x="12" y="34" font-size="13" font-weight="700" fill="#E8F0FF">热负荷 +6%</text>
+              <text x="12" y="46" font-size="9" fill="#00E5FF">已提前预冷</text>
+            </g>
+          </g>
+          <g transform="translate(368,350)">
+            <g class="svg-chip ci-3">
+              <rect width="142" height="48" rx="10" fill="rgba(8,15,30,.94)" stroke="rgba(0,229,255,.4)"/>
+              <text x="12" y="16" font-size="9" fill="#5E7096" letter-spacing="1.5">联动执行</text>
+              <text x="12" y="36" font-size="15" font-weight="700" fill="#E8F0FF">0.8s</text>
+              <text x="58" y="36" font-size="10" fill="#00D68F">策略闭环</text>
+            </g>
+          </g>
+        </svg>
+      </div>
+    </div>
+  </div>
+
+  <!-- 数据指标带 -->
+  <div class="container">
+    <div class="stats-band reveal">
+      <div class="stat">
+        <b><span class="counter" data-count="15">0</span>%<i class="stat-plus">+</i></b>
+        <span>PUE 综合降低</span>
+      </div>
+      <div class="stat">
+        <b>&lt;<span class="counter" data-count="1">0</span>s</b>
+        <span>联动调控响应</span>
+      </div>
+      <div class="stat">
+        <b><span class="counter" data-count="50000">0</span>+</b>
+        <span>可接入机柜规模</span>
+      </div>
+      <div class="stat">
+        <b><span class="counter" data-count="30">0</span>%</b>
+        <span>制冷电费节省上限</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== 核心功能 ========== -->
+<section class="section" id="features">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="kicker">CORE CAPABILITIES</span>
+      <h2>六大核心能力，构建散热调控闭环</h2>
+      <p>从感知到执行的全链路智能化，让每一瓦制冷都精准匹配每一瓦算力</p>
+    </div>
+    <div class="feature-grid">
+      <article class="feature-card reveal">
+        <div class="fc-icon">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3v3m0 12v3m9-9h-3M6 12H3m13.5-6.5L15 7M9 17l-1.5 1.5m11 0L17 17M7 9 5.5 7.5M12 8a4 4 0 1 0 0 8 4 4 0 0 0 0-8Z" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><circle cx="12" cy="12" r="1.8" fill="currentColor"/></svg>
+        </div>
+        <h3>全域感知采集</h3>
+        <p>温度、湿度、功耗、水流量、进出风多维度数据秒级采集，兼容 SNMP、Modbus、BACnet、Redfish 等主流协议，老旧设备亦可平滑接入。</p>
+      </article>
+      <article class="feature-card reveal">
+        <div class="fc-icon">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M3 17l4-6 4 3 4-8 6 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M3 21h18" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><circle cx="19" cy="6" r="1.6" fill="currentColor"/></svg>
+        </div>
+        <h3>AI 热负荷预测</h3>
+        <p>基于时序深度学习模型，提前 2–4 小时预测热负荷变化趋势，算力高峰来临前完成制冷资源预调度，实现削峰填谷。</p>
+      </article>
+      <article class="feature-card reveal">
+        <div class="fc-icon">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="6" cy="12" r="3" stroke="currentColor" stroke-width="1.6"/><circle cx="18" cy="6" r="3" stroke="currentColor" stroke-width="1.6"/><circle cx="18" cy="18" r="3" stroke="currentColor" stroke-width="1.6"/><path d="M8.7 10.7 15.3 7.3M8.7 13.3l6.6 3.4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+        </div>
+        <h3>多系统联动调控</h3>
+        <p>精密空调、风扇墙、液冷 CDU、新风与末级阀门协同联动，策略秒级下发、执行结果闭环反馈，杜绝"各自为战"的粗放制冷。</p>
+      </article>
+      <article class="feature-card reveal">
+        <div class="fc-icon">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M13 2 4.5 13.5H11L9.5 22 19 10h-6.5L13 2Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>
+        </div>
+        <h3>能耗寻优引擎</h3>
+        <p>以 PUE 最优为目标持续自学习，在安全边界内动态匹配空调组合、风速与水温设定点，综合制冷电费最高可降 30%。</p>
+      </article>
+      <article class="feature-card reveal">
+        <div class="fc-icon">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="4" width="18" height="13" rx="2" stroke="currentColor" stroke-width="1.6"/><path d="M7 9l2.5 3L7 15m5 0h5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M8 21h8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+        </div>
+        <h3>数字孪生大屏</h3>
+        <p>3D 机房孪生与 3D 热力图实时呈现，冷热点一眼可见；支持定制化管理驾驶舱与多园区统一视图。</p>
+      </article>
+      <article class="feature-card reveal">
+        <div class="fc-icon">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3 4.5 6v5c0 4.6 3.2 8 7.5 10 4.3-2 7.5-5.4 7.5-10V6L12 3Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="m9 11.5 2.2 2.2L15.5 9.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <h3>告警与自愈</h3>
+        <p>局部过热、漏液、风机失效等 30+ 异常场景秒级告警，自动执行降温预案与负载迁移建议，故障自愈率超 92%。</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ========== 系统架构 ========== -->
+<section class="section section-alt" id="architecture">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="kicker">ARCHITECTURE</span>
+      <h2>四层架构，稳如磐石</h2>
+      <p>端边云一体化设计，支持公有云 SaaS 与全私有化部署两种交付形态</p>
+    </div>
+    <div class="arch-wrap reveal">
+      <div class="arch-layer">
+        <div class="al-tag"><span>应用层</span>APPLICATION</div>
+        <div class="al-nodes">
+          <span class="node">监控大屏</span><span class="node">能耗报表</span>
+          <span class="node">运维工单</span><span class="node">开放 API</span>
+        </div>
+      </div>
+      <div class="arch-arrow" aria-hidden="true"></div>
+      <div class="arch-layer">
+        <div class="al-tag"><span>平台层</span>PLATFORM</div>
+        <div class="al-nodes">
+          <span class="node hot">AI 调控引擎</span><span class="node hot">策略中心</span>
+          <span class="node">数据中台</span><span class="node hot">数字孪生</span>
+        </div>
+      </div>
+      <div class="arch-arrow" aria-hidden="true"></div>
+      <div class="arch-layer">
+        <div class="al-tag"><span>边缘层</span>EDGE</div>
+        <div class="al-nodes">
+          <span class="node">智能网关</span><span class="node">协议转换</span>
+          <span class="node">数据清洗</span><span class="node">本地联动</span>
+        </div>
+      </div>
+      <div class="arch-arrow" aria-hidden="true"></div>
+      <div class="arch-layer">
+        <div class="al-tag"><span>感知层</span>SENSING</div>
+        <div class="al-nodes">
+          <span class="node">温湿度传感</span><span class="node">功率计量</span>
+          <span class="node">流量/漏液</span><span class="node">气流组织</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 调控闭环 -->
+    <div class="loop-wrap reveal">
+      <div class="loop-title">散热调控闭环 · 持续自优化</div>
+      <div class="loop-steps">
+        <div class="loop-step"><b>感知</b><span>全量数据采集</span></div>
+        <div class="loop-step"><b>分析</b><span>冷热点识别</span></div>
+        <div class="loop-step"><b>预测</b><span>热负荷推演</span></div>
+        <div class="loop-step"><b>决策</b><span>策略寻优</span></div>
+        <div class="loop-step"><b>执行</b><span>秒级下发</span></div>
+        <div class="loop-step"><b>反馈</b><span>效果回归</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== 应用场景 ========== -->
+<section class="section" id="scenarios">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="kicker">SCENARIOS</span>
+      <h2>为高密度算力场景而生</h2>
+      <p>单机柜功率从 4kW 到 40kW+，风冷与液冷全场景覆盖</p>
+    </div>
+    <div class="scenario-grid">
+      <article class="scenario-card reveal">
+        <div class="sc-visual sc-idc" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span><span></span></div>
+        <h3>IDC 数据中心</h3>
+        <p>万级机柜统一纳管，PUE 精细化运营，电费直接转化为利润。</p>
+      </article>
+      <article class="scenario-card reveal">
+        <div class="sc-visual sc-ai" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span><span></span></div>
+        <h3>AI 智算中心</h3>
+        <p>GPU 集群瞬时功率波动大，AI 预测调控让高密机柜时刻处于安全温度区间。</p>
+      </article>
+      <article class="scenario-card reveal">
+        <div class="sc-visual sc-enterprise" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span><span></span></div>
+        <h3>企业自建机房</h3>
+        <p>无人值守也能安心运行，异常自愈 + 移动端告警，运维人力成本降低 60%。</p>
+      </article>
+      <article class="scenario-card reveal">
+        <div class="sc-visual sc-edge" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span><span></span></div>
+        <h3>边缘计算节点</h3>
+        <p>轻量化边缘网关本地闭环，弱网环境下调控策略依然秒级执行。</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ========== 客户价值 ========== -->
+<section class="section section-alt" id="value">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="kicker">VALUE</span>
+      <h2>看得见的四重回报</h2>
+    </div>
+    <div class="value-grid">
+      <div class="value-card reveal">
+        <b><span class="counter" data-count="30">0</span>%</b>
+        <h3>节能降本</h3>
+        <p>制冷系统从"按最大负载供冷"转向"按需精准供冷"，综合电费降低 20–30%。</p>
+      </div>
+      <div class="value-card reveal">
+        <b><span class="counter" data-count="85">0</span>%</b>
+        <h3>安全可靠</h3>
+        <p>局部过热风险下降 85%，热点击穿、宕机损失远离您的机房。</p>
+      </div>
+      <div class="value-card reveal">
+        <b><span class="counter" data-count="60">0</span>%</b>
+        <h3>运维提效</h3>
+        <p>人工巡检与手动调参工作量减少 60%，团队聚焦更高价值的工作。</p>
+      </div>
+      <div class="value-card reveal">
+        <b><span class="counter" data-count="99.99" data-decimal="2">0</span>%</b>
+        <h3>弹性扩展</h3>
+        <p>平台支持万级机柜横向扩展，业务增长无需推倒重建。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== 价格方案 ========== -->
+<section class="section" id="pricing">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="kicker">PRICING</span>
+      <h2>选择适合您的方案</h2>
+      <p>订阅制 SaaS 或私有化部署，均含实施部署与培训服务</p>
+    </div>
+    <div class="pricing-grid">
+
+      <article class="price-card reveal">
+        <header>
+          <h3>基础版</h3>
+          <p class="pc-for">中小型机房 · ≤ 200 机柜</p>
+          <div class="pc-price"><b>¥2,980</b><span>/ 年</span></div>
+        </header>
+        <ul class="pc-list">
+          <li>全域感知与实时监控</li>
+          <li>基础联动调控（空调 + 风扇墙）</li>
+          <li>告警中心与工单管理</li>
+          <li>能耗统计报表</li>
+          <li>5×8 小时技术支持</li>
+          <li class="muted">2 个管理员账号</li>
+        </ul>
+        <a class="btn btn-ghost btn-block" href="order.html?plan=basic">立即订购</a>
+      </article>
+
+      <article class="price-card featured reveal">
+        <span class="pc-badge">最受欢迎</span>
+        <header>
+          <h3>专业版</h3>
+          <p class="pc-for">大中型数据中心 · ≤ 2,000 机柜</p>
+          <div class="pc-price"><b>¥6,980</b><span>/ 年</span></div>
+        </header>
+        <ul class="pc-list">
+          <li><b>基础版全部功能</b></li>
+          <li>AI 热负荷预测调控</li>
+          <li>能耗寻优引擎</li>
+          <li>3D 数字孪生大屏</li>
+          <li>多机房统一纳管</li>
+          <li>7×24 小时技术支持</li>
+          <li>管理员账号不限量</li>
+        </ul>
+        <a class="btn btn-primary btn-block" href="order.html?plan=pro">立即订购</a>
+      </article>
+
+      <article class="price-card reveal">
+        <header>
+          <h3>旗舰版</h3>
+          <p class="pc-for">智算中心 / 多园区 · 不限机柜</p>
+          <div class="pc-price"><b>定制报价</b></div>
+        </header>
+        <ul class="pc-list">
+          <li><b>专业版全部功能</b></li>
+          <li>液冷系统联动调控（CDU / 一次侧）</li>
+          <li>全栈私有化部署</li>
+          <li>数字孪生深度定制</li>
+          <li>专属交付与驻场服务</li>
+          <li>SLA 99.99% 保障</li>
+        </ul>
+        <a class="btn btn-ghost btn-block" href="order.html?plan=flagship">预约顾问</a>
+      </article>
+    </div>
+
+    <div class="gateway-card reveal">
+      <div class="gw-info">
+        <span class="gw-tag">选配硬件</span>
+        <h4>智能采集网关 XS-G200</h4>
+        <p>边缘协议转换 + 本地联动执行，断网仍可自主调控 · 含上门安装调试</p>
+      </div>
+      <div class="gw-buy">
+        <b>¥4,800<small>/ 台</small></b>
+        <a class="btn btn-ghost btn-sm" href="order.html?plan=pro&gw=1">随订单加购</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== 服务流程 ========== -->
+<section class="section section-alt" id="process">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="kicker">DELIVERY</span>
+      <h2>四步交付，最快 2 周上线</h2>
+    </div>
+    <div class="process-grid">
+      <div class="process-step reveal">
+        <span class="ps-num">01</span>
+        <h3>需求评估</h3>
+        <p>机房勘察与设备清单梳理，输出节能潜力评估报告。</p>
+      </div>
+      <div class="process-step reveal">
+        <span class="ps-num">02</span>
+        <h3>方案设计</h3>
+        <p>传感点位布置、调控策略与交付范围确认，方案透明可量化。</p>
+      </div>
+      <div class="process-step reveal">
+        <span class="ps-num">03</span>
+        <h3>部署实施</h3>
+        <p>网关安装、平台联调与策略灰度上线，不影响在营业务。</p>
+      </div>
+      <div class="process-step reveal">
+        <span class="ps-num">04</span>
+        <h3>持续优化</h3>
+        <p>AI 模型随季节与负载自进化，季度节能报告持续兑现价值。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== FAQ ========== -->
+<section class="section" id="faq">
+  <div class="container container-narrow">
+    <div class="section-head reveal">
+      <span class="kicker">FAQ</span>
+      <h2>常见问题</h2>
+    </div>
+    <div class="faq-list reveal">
+      <details class="faq-item">
+        <summary>部署周期需要多长时间？是否影响在营业务？<span class="faq-icon" aria-hidden="true"></span></summary>
+        <p>标准版 SaaS 接入通常 1–2 周完成；私有化部署视机房规模 2–6 周。实施全程采用灰度接入与旁路部署，不对在营业务造成中断。</p>
+      </details>
+      <details class="faq-item">
+        <summary>我们机房的品牌空调、老旧传感器能接入吗？</summary>
+        <p>可以。平台内置 SNMP、Modbus、BACnet、Redfish 等 40+ 协议驱动，覆盖主流精密空调与动环设备品牌；特殊协议可由实施团队定制适配。</p>
+      </details>
+      <details class="faq-item">
+        <summary>数据安全如何保障？</summary>
+        <p>支持全栈私有化部署，数据不出机房；传输层 TLS 加密、存储层国密加密，并通过细粒度权限与操作审计满足等保合规要求。</p>
+      </details>
+      <details class="faq-item">
+        <summary>支持哪些付款方式？能否提供试用？</summary>
+        <p>支持微信支付、支付宝在线付款，以及对公转账与合同结算。新客户可申请 30 天 POC 试点，以实测节能数据决定是否正式采购。</p>
+      </details>
+      <details class="faq-item">
+        <summary>订阅到期后数据怎么办？</summary>
+        <p>到期后可申请完整数据导出（含历史时序数据与策略配置），平台保留 90 天宽限期供续费恢复，绝不绑架客户数据。</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- ========== CTA 横幅 ========== -->
+<section class="cta-band">
+  <div class="container cta-inner reveal">
+    <div>
+      <h2>让每一度电，都创造价值</h2>
+      <p>30 天 POC 试点 · 实测节能数据说话 · 今天开始智能散热之旅</p>
+    </div>
+    <div class="cta-actions">
+      <a class="btn btn-light btn-lg" href="order.html">立即订购</a>
+      <a class="btn btn-outline btn-lg" href="#contact">预约演示</a>
+    </div>
+  </div>
+</section>
+
+<!-- ========== 关于我们 / 联系 ========== -->
+<section class="section" id="about">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-copy reveal" id="contact">
+        <span class="kicker">ABOUT US</span>
+        <h2>上海绪上科技有限公司</h2>
+        <p>绪上科技是一家专注于数据中心基础设施智能化的高科技企业，核心团队来自头部云计算与暖通自控行业。我们以"让绿色算力触手可及"为使命，深耕服务器散热联动智能调控领域，为数据中心、智算中心与企业机房提供从感知、决策到执行的一体化节能解决方案。</p>
+        <ul class="about-contact">
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 21s7-5.1 7-11a7 7 0 1 0-14 0c0 5.9 7 11 7 11Z" stroke="currentColor" stroke-width="1.6"/><circle cx="12" cy="10" r="2.6" stroke="currentColor" stroke-width="1.6"/></svg>
+            <span>上海市静安区万荣路 700 号 39 幢</span>
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a12 12 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>
+            <span>商务热线 15221482151</span>
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2" stroke="currentColor" stroke-width="1.6"/><path d="m4 7 8 6 8-6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <span>商务邮箱 15221482151@163.com</span>
+          </li>
+        </ul>
+        <form class="demo-form" id="demoForm" novalidate>
+          <div class="df-row">
+            <input type="text" name="company" placeholder="公司名称" required>
+            <input type="tel" name="phone" placeholder="联系电话" required pattern="1[3-9]\d{9}">
+          </div>
+          <button class="btn btn-primary btn-block" type="submit">预约产品演示</button>
+          <p class="df-note">提交后专属顾问将在 1 个工作日内与您联系（演示环境，数据仅存本地）</p>
+        </form>
+      </div>
+      <div class="about-visual reveal" aria-hidden="true">
+        <div class="av-glow"></div>
+        <div class="av-card">
+          <div class="av-head"><span class="pulse-dot"></span>绪上科技 · 智能散热调控平台</div>
+          <div class="av-rows">
+            <div class="av-row"><span>接入机房</span><b>30+ 座</b></div>
+            <div class="av-row"><span>纳管机柜</span><b>52,000+ 架</b></div>
+            <div class="av-row"><span>累计节电</span><b>2.3 亿 kWh</b></div>
+            <div class="av-row"><span>减碳排量</span><b>13.5 万吨</b></div>
+            <div class="av-row"><span>客户续费率</span><b>96%</b></div>
+          </div>
+          <div class="av-foot">数据截至 2026 Q3 · 经第三方核验</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ========== 页脚 ========== -->
+<footer class="footer">
+  <div class="container footer-grid">
+    <div class="f-brand">
+      <a class="brand" href="#top">
+        <svg class="brand-mark" viewBox="0 0 40 40" fill="none" aria-hidden="true">
+          <path d="M20 2.5 35.5 11v18L20 37.5 4.5 29V11L20 2.5Z" stroke="#00E5FF" stroke-width="2.4" fill="rgba(0,229,255,.06)"/>
+          <rect x="13" y="14" width="14" height="2.4" rx="1.2" fill="#00E5FF"/>
+          <rect x="13" y="19" width="14" height="2.4" rx="1.2" fill="#5AB8FF"/>
+          <rect x="13" y="24" width="14" height="2.4" rx="1.2" fill="#2E7DFF"/>
+        </svg>
+        <span class="brand-text"><b>绪上科技</b><i>服务器散热联动智能调控软件</i></span>
+      </a>
+      <p>让绿色算力触手可及。<br>数据中心散热调控领域的智能化先锋。</p>
+    </div>
+    <div class="f-col">
+      <h4>产品</h4>
+      <a href="#features">核心功能</a>
+      <a href="#architecture">系统架构</a>
+      <a href="#scenarios">应用场景</a>
+      <a href="#pricing">价格方案</a>
+    </div>
+    <div class="f-col">
+      <h4>服务</h4>
+      <a href="#process">交付流程</a>
+      <a href="#faq">常见问题</a>
+      <a href="order.html">在线订购</a>
+      <a href="#contact">预约演示</a>
+    </div>
+    <div class="f-col">
+      <h4>公司</h4>
+      <a href="#about">关于我们</a>
+      <a href="#contact">联系我们</a>
+      <a href="#about">加入我们</a>
+    </div>
+  </div>
+  <div class="container footer-bar">
+    <span>© 2026 上海绪上科技有限公司 版权所有</span>
+    <span class="f-icp">沪ICP备XXXXXXXX号-X <em>（备案通过后替换）</em></span>
+  </div>
+</footer>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script src="js/main.js"></script>
+</body>
+</html>

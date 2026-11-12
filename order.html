@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>在线订购 - 服务器散热联动智能调控软件 - 上海绪上科技有限公司</title>
+<meta name="description" content="在线订购服务器散热联动智能调控软件：选择套餐、确认订单、在线支付、开通服务，一站式完成。">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body class="page-order">
+
+<!-- ========== 导航栏 ========== -->
+<header class="nav" id="nav">
+  <div class="container nav-inner">
+    <a class="brand" href="index.html" aria-label="返回首页">
+      <svg class="brand-mark" viewBox="0 0 40 40" fill="none" aria-hidden="true">
+        <defs>
+          <linearGradient id="lg-brand" x1="0" y1="0" x2="40" y2="40">
+            <stop offset="0" stop-color="#00E5FF"/><stop offset="1" stop-color="#2E7DFF"/>
+          </linearGradient>
+        </defs>
+        <path d="M20 2.5 35.5 11v18L20 37.5 4.5 29V11L20 2.5Z" stroke="url(#lg-brand)" stroke-width="2.4" fill="rgba(0,229,255,.06)"/>
+        <rect x="13" y="14" width="14" height="2.4" rx="1.2" fill="#00E5FF"/>
+        <rect x="13" y="19" width="14" height="2.4" rx="1.2" fill="#5AB8FF"/>
+        <rect x="13" y="24" width="14" height="2.4" rx="1.2" fill="#2E7DFF"/>
+        <circle cx="27" cy="20" r="1.6" fill="#00E5FF"/>
+      </svg>
+      <span class="brand-text">
+        <b>绪上科技</b>
+        <i>服务器散热联动智能调控软件</i>
+      </span>
+    </a>
+    <nav class="nav-links" id="navLinks" aria-label="主导航">
+      <a href="index.html">返回官网</a>
+      <a href="index.html#pricing">价格方案</a>
+      <a href="index.html#faq">常见问题</a>
+    </nav>
+    <button class="nav-toggle" id="navToggle" aria-label="打开菜单" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<main class="order-main">
+  <div class="container">
+
+    <!-- 步骤指示器 -->
+    <ol class="steps" id="stepsBar">
+      <li class="step active" data-step="1"><i>1</i><span>选择方案</span></li>
+      <li class="step-line" aria-hidden="true"></li>
+      <li class="step" data-step="2"><i>2</i><span>确认订单</span></li>
+      <li class="step-line" aria-hidden="true"></li>
+      <li class="step" data-step="3"><i>3</i><span>在线支付</span></li>
+      <li class="step-line" aria-hidden="true"></li>
+      <li class="step" data-step="4"><i>4</i><span>开通服务</span></li>
+    </ol>
+
+    <!-- ===== 第 1 步：选择方案 ===== -->
+    <section class="order-panel active" id="panel1">
+      <div class="order-layout">
+        <div class="order-left">
+          <h2 class="op-title">选择订阅方案</h2>
+
+          <div class="plan-list" id="planList" role="radiogroup" aria-label="订阅方案">
+            <label class="plan-option" data-plan="basic">
+              <input type="radio" name="plan" value="basic">
+              <span class="po-check" aria-hidden="true"></span>
+              <span class="po-body">
+                <b class="po-name">基础版 <em>≤ 200 机柜</em></b>
+                <span class="po-desc">全域监控 · 基础联动调控 · 告警工单 · 能耗报表</span>
+              </span>
+              <span class="po-price"><b>¥2,980</b><i>/ 年</i></span>
+            </label>
+
+            <label class="plan-option" data-plan="pro">
+              <input type="radio" name="plan" value="pro" checked>
+              <span class="po-check" aria-hidden="true"></span>
+              <span class="po-body">
+                <b class="po-name">专业版 <em>≤ 2,000 机柜</em><span class="po-badge">最受欢迎</span></b>
+                <span class="po-desc">基础版全部功能 · AI 热负荷预测 · 能耗寻优 · 3D 数字孪生 · 7×24 支持</span>
+              </span>
+              <span class="po-price"><b>¥6,980</b><i>/ 年</i></span>
+            </label>
+
+            <label class="plan-option" data-plan="flagship">
+              <input type="radio" name="plan" value="flagship">
+              <span class="po-check" aria-hidden="true"></span>
+              <span class="po-body">
+                <b class="po-name">旗舰版 <em>不限机柜 / 多园区</em></b>
+                <span class="po-desc">专业版全部功能 · 液冷联动 · 私有化部署 · SLA 99.99% · 专属交付团队</span>
+              </span>
+              <span class="po-price"><b>定制报价</b><i>顾问对接</i></span>
+            </label>
+          </div>
+
+          <h2 class="op-title">订阅时长</h2>
+          <div class="seg" id="yearsSeg" role="radiogroup" aria-label="订阅时长">
+            <label class="seg-item"><input type="radio" name="years" value="1" checked><span>1 年<i>原价</i></span></label>
+            <label class="seg-item"><input type="radio" name="years" value="2"><span>2 年<i>95 折</i></span></label>
+            <label class="seg-item"><input type="radio" name="years" value="3"><span>3 年<i>88 折</i></span></label>
+          </div>
+
+          <h2 class="op-title">选配硬件</h2>
+          <div class="gw-stepper-card">
+            <div class="gw-meta">
+              <b>智能采集网关 XS-G200</b>
+              <span>边缘协议转换 + 本地联动执行 · 含上门安装调试</span>
+            </div>
+            <div class="gw-right">
+              <b class="gw-unit">¥4,800<i>/ 台</i></b>
+              <div class="stepper">
+                <button type="button" class="st-btn" id="gwMinus" aria-label="减少网关数量">−</button>
+                <span class="st-num" id="gwNum">0</span>
+                <button type="button" class="st-btn" id="gwPlus" aria-label="增加网关数量">+</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <aside class="order-aside">
+          <div class="oa-card">
+            <h3>订单摘要</h3>
+            <ul class="oa-lines" id="summaryLines">
+              <li><span>专业版 · 1 年</span><b>¥89,800</b></li>
+            </ul>
+            <div class="oa-discount" id="discountLine" hidden>
+              <span>时长折扣</span><b id="discountVal">-¥0</b>
+            </div>
+            <div class="oa-total">
+              <span>应付总额</span>
+              <b id="totalVal">¥89,800</b>
+            </div>
+            <button class="btn btn-primary btn-block btn-lg" id="toStep2">下一步 · 确认订单</button>
+            <p class="oa-note">含实施部署与操作培训 · 支持对公转账 / 在线支付</p>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <!-- ===== 第 2 步：确认订单 ===== -->
+    <section class="order-panel" id="panel2">
+      <div class="order-layout">
+        <div class="order-left">
+          <h2 class="op-title">开票与联系信息</h2>
+          <form class="oform" id="orderForm" novalidate>
+            <div class="of-row2">
+              <div class="of-field">
+                <label for="fCompany">公司名称 <i>*</i></label>
+                <input id="fCompany" name="company" type="text" placeholder="如：上海绪上科技有限公司" autocomplete="organization">
+                <span class="of-err">请填写公司名称</span>
+              </div>
+              <div class="of-field">
+                <label for="fContact">联系人 <i>*</i></label>
+                <input id="fContact" name="contact" type="text" placeholder="您的姓名" autocomplete="name">
+                <span class="of-err">请填写联系人</span>
+              </div>
+            </div>
+            <div class="of-row2">
+              <div class="of-field">
+                <label for="fPhone">手机号码 <i>*</i></label>
+                <input id="fPhone" name="phone" type="tel" placeholder="用于接收开通短信" maxlength="11" autocomplete="tel">
+                <span class="of-err">请填写正确的 11 位手机号</span>
+              </div>
+              <div class="of-field">
+                <label for="fEmail">电子邮箱 <i>*</i></label>
+                <input id="fEmail" name="email" type="email" placeholder="用于接收合同与发票" autocomplete="email">
+                <span class="of-err">请填写正确的邮箱地址</span>
+              </div>
+            </div>
+            <div class="of-row2">
+              <div class="of-field">
+                <label for="fRacks">机柜数量（选填）</label>
+                <input id="fRacks" name="racks" type="number" min="0" placeholder="如：320">
+              </div>
+              <div class="of-field">
+                <label for="fInvoice">发票类型</label>
+                <select id="fInvoice" name="invoice">
+                  <option value="增值税专用发票">增值税专用发票（6% 软件服务）</option>
+                  <option value="增值税普通发票">增值税普通发票</option>
+                </select>
+              </div>
+            </div>
+            <div class="of-field">
+              <label for="fRemark">需求备注（选填）</label>
+              <textarea id="fRemark" name="remark" rows="3" placeholder="机房概况、期望上线时间、现有设备品牌等"></textarea>
+            </div>
+            <label class="of-agree">
+              <input type="checkbox" id="fAgree">
+              <span>我已阅读并同意 <a href="javascript:void(0)" id="agreeLink">《软件服务订购协议》</a> 与 <a href="javascript:void(0)">《隐私政策》</a></span>
+            </label>
+            <span class="of-err of-agree-err" id="agreeErr">请先勾选同意服务协议</span>
+          </form>
+        </div>
+        <aside class="order-aside">
+          <div class="oa-card">
+            <h3>订单摘要</h3>
+            <ul class="oa-lines" id="summaryLines2"></ul>
+            <div class="oa-discount" id="discountLine2" hidden>
+              <span>时长折扣</span><b id="discountVal2">-¥0</b>
+            </div>
+            <div class="oa-total"><span>应付总额</span><b id="totalVal2">—</b></div>
+            <div class="oa-btns">
+              <button class="btn btn-ghost" id="backTo1">上一步</button>
+              <button class="btn btn-primary" id="submitOrder">提交订单</button>
+            </div>
+            <p class="oa-note">提交后生成订单编号，进入支付环节</p>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <!-- ===== 第 3 步：在线支付 ===== -->
+    <section class="order-panel" id="panel3">
+      <div class="pay-layout">
+
+        <!-- 在线支付（标准/专业版） -->
+        <div id="payOnline">
+          <div class="pay-head">
+            <div>
+              <h2 class="op-title">在线支付</h2>
+              <p class="pay-sub">订单号 <b id="payOrderNo">—</b> · 应付 <b class="pay-amount" id="payAmount">¥0</b></p>
+            </div>
+            <div class="pay-countdown" id="payCountdown">
+              <span>支付剩余时间</span><b id="cdTime">15:00</b>
+            </div>
+          </div>
+
+          <div class="pay-tabs" role="tablist" aria-label="支付方式">
+            <button class="pay-tab active" data-pay="wechat" role="tab" aria-selected="true">
+              <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M9.3 4C5.3 4 2 6.7 2 10.1c0 1.9 1 3.5 2.6 4.6l-.7 2.2 2.5-1.3c.7.2 1.5.3 2.3.3a5.5 5.5 0 0 1-.2-1.5c0-3.3 3.2-6 7.1-6h.4C15.3 6 12.6 4 9.3 4Zm-2.4 3.2c.5 0 .9.4.9.9s-.4.9-.9.9-.9-.4-.9-.9.4-.9.9-.9Zm4.8 0c.5 0 .9.4.9.9s-.4.9-.9.9-.9-.4-.9-.9.4-.9.9-.9Z" fill="currentColor"/><path d="M22 14.6c0-2.8-2.8-5-6.2-5s-6.2 2.2-6.2 5 2.8 5 6.2 5c.7 0 1.3-.1 1.9-.3l2.1 1.1-.6-1.8c1.7-1 2.8-2.4 2.8-4Zm-8.3-1.4c-.4 0-.8-.3-.8-.8s.4-.8.8-.8.8.4.8.8-.4.8-.8.8Zm4.2 0c-.4 0-.8-.3-.8-.8s.4-.8.8-.8.8.4.8.8-.4.8-.8.8Z" fill="currentColor"/></svg>
+              微信支付
+            </button>
+            <button class="pay-tab" data-pay="alipay" role="tab" aria-selected="false">
+              <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M18.4 14.4C16.9 13.5 14 12.2 14 12.2s.9-2 1.6-4.1c.5-1.4.3-3-.4-4.1h-2.6c.7 1.2.9 2.7.4 4.1-.7 2.1-1.6 4.1-1.6 4.1S8 13.5 6.5 14.4c-2.3 1.4-2.8 3.9-1.5 5.3 1 1.1 2.7 1.3 4.4.7 1.2-.4 2.3-1.2 3.3-2.4 0 0 2 1 4.4 2 1.5.6 2.9.2 3.3-.9.3-1.2-.3-3.5-2-4.7ZM8.9 18.3c-1.2.5-2.2.2-2.5-.4-.3-.7.2-1.6 1.2-2.2 1-.6 2.7-1.3 4-1.9-.6 1.6-1.5 4-2.7 4.5Zm8.9.1c-1.3-.5-2.8-1.2-3.9-1.8.8-1.1 1.4-2.2 1.7-3 1.1.5 2.4 1.1 3.3 1.7 1.3.9 1.6 2.4 1.1 3.1-.4.6-1.3.5-2.2 0ZM9.6 3h2.9l-1.5 2.4h-2.9L9.6 3Z" fill="currentColor"/></svg>
+              支付宝
+            </button>
+            <button class="pay-tab" data-pay="bank" role="tab" aria-selected="false">
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="none" aria-hidden="true"><path d="M3 9.5 12 4l9 5.5M5 10v8m4-8v8m6-8v8m4-8v8M3 20h18" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              对公转账
+            </button>
+          </div>
+
+          <!-- 扫码支付 -->
+          <div class="pay-body" id="payQR">
+            <div class="qr-wrap">
+              <canvas id="qrCanvas" width="220" height="220" aria-label="支付二维码"></canvas>
+              <div class="qr-mask" id="qrMask" hidden>
+                <p>二维码已过期</p>
+                <button class="btn btn-ghost btn-sm" id="qrRefresh">点击刷新</button>
+              </div>
+              <div class="qr-logo" id="qrLogo">微信支付</div>
+            </div>
+            <div class="qr-tips">
+              <p class="qt-title">请使用<b id="qrAppName">微信</b>扫一扫</p>
+              <p>扫描二维码完成支付，支付成功后订单自动开通</p>
+              <div class="qt-demo">
+                <span class="qt-demo-tag">演示环境</span>
+                当前为演示站点，未接入真实支付通道。可点击下方按钮模拟支付成功，体验完整订购闭环；正式支付能力将在 ICP 备案完成后接入微信支付 / 支付宝商户通道。
+              </div>
+              <button class="btn btn-primary btn-block" id="mockPaySuccess">模拟支付成功（演示）</button>
+              <button class="btn btn-ghost btn-block" id="payBack">返回修改订单</button>
+            </div>
+          </div>
+
+          <!-- 对公转账 -->
+          <div class="pay-body" id="payBank" hidden>
+            <div class="bank-card">
+              <h4>对公账户信息</h4>
+              <dl>
+                <div><dt>户　名</dt><dd>上海绪上科技有限公司</dd><button class="copy-btn" data-copy="上海绪上科技有限公司">复制</button></div>
+                <div><dt>开户行</dt><dd>XX银行上海浦东科技支行 <em>（正式上线后替换）</em></dd><button class="copy-btn" data-copy="XX银行上海浦东科技支行">复制</button></div>
+                <div><dt>账　号</dt><dd>3100 XXXX XXXX XXXX XXX <em>（正式上线后替换）</em></dd><button class="copy-btn" data-copy="31000000000000000000">复制</button></div>
+                <div><dt>备　注</dt><dd id="bankRemark">订单号</dd><button class="copy-btn" id="copyOrderNo">复制</button></div>
+              </dl>
+              <p class="bank-tip">转账后请保留回执，财务确认到账（1 个工作日内）即为订单生效并开通服务。</p>
+              <div class="qt-demo">
+                <span class="qt-demo-tag">演示环境</span>
+                点击下方按钮可模拟"已提交汇款凭证"，订单将进入"待财务确认"状态。
+              </div>
+              <button class="btn btn-primary btn-block" id="mockBankDone">我已转账，提交凭证（模拟）</button>
+              <button class="btn btn-ghost btn-block" id="payBack2">返回修改订单</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- 旗舰版：顾问对接 -->
+        <div id="payFlagship" hidden>
+          <div class="flagship-card">
+            <h2 class="op-title">专属顾问对接</h2>
+            <p>旗舰版按机房规模、液冷形态与部署方式定制方案与报价。您的需求单已生成，专属顾问将在 <b>1 个工作日内</b>与您电话联系，安排机房勘察与方案设计。</p>
+            <div class="fs-highlight">
+              <div><b>需求单号</b><span id="fsOrderNo">—</span></div>
+              <div><b>对接人</b><span>企业服务部 · 旗舰版专属交付组</span></div>
+              <div><b>响应时效</b><span>1 个工作日内电话联系</span></div>
+            </div>
+            <div class="qt-demo">
+              <span class="qt-demo-tag">演示环境</span>
+              点击下方按钮确认提交，完成预约闭环演示。
+            </div>
+            <button class="btn btn-primary btn-block btn-lg" id="flagshipConfirm">确认提交需求单</button>
+            <button class="btn btn-ghost btn-block" id="flagshipBack">返回修改</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 第 4 步：开通成功 ===== -->
+    <section class="order-panel" id="panel4">
+      <div class="success-card">
+        <div class="sc-icon" id="successIcon" aria-hidden="true">
+          <svg viewBox="0 0 52 52"><circle class="sci-ring" cx="26" cy="26" r="24" fill="none"/><path class="sci-check" d="M15 27l7.5 7.5L38 19" fill="none"/></svg>
+        </div>
+        <h2 id="successTitle">支付成功，服务开通中</h2>
+        <p class="sc-sub" id="successSub">开通短信与邮件已发送至您的预留联系方式</p>
+
+        <div class="sc-detail">
+          <div class="scd-row"><span>订单编号</span><b id="doneOrderNo">—</b></div>
+          <div class="scd-row"><span>订单内容</span><b id="doneItems">—</b></div>
+          <div class="scd-row"><span>实付金额</span><b id="doneAmount">—</b></div>
+          <div class="scd-row"><span>订单状态</span><b class="scd-status" id="doneStatus">已支付</b></div>
+        </div>
+
+        <div class="sc-next">
+          <h4>接下来的开通流程</h4>
+          <ol>
+            <li><b>1 个工作日内</b>：专属交付顾问致电，确认机房信息与实施排期</li>
+            <li><b>3 个工作日内</b>：开通平台管理员账号，邮寄合同与发票</li>
+            <li><b>2 周内</b>：完成网关安装、设备接入与调控策略灰度上线</li>
+          </ol>
+        </div>
+
+        <div class="sc-actions">
+          <a class="btn btn-primary btn-lg" href="index.html">返回官网首页</a>
+          <a class="btn btn-ghost btn-lg" href="order.html">再下一单</a>
+        </div>
+      </div>
+    </section>
+
+  </div>
+</main>
+
+<footer class="footer footer-slim">
+  <div class="container footer-bar">
+    <span>© 2026 上海绪上科技有限公司 版权所有</span>
+    <span class="f-icp">沪ICP备XXXXXXXX号-X <em>（备案通过后替换）</em></span>
+  </div>
+</footer>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<!-- 服务协议弹层（演示用摘要） -->
+<div class="modal" id="agreeModal" hidden>
+  <div class="modal-card">
+    <h4>软件服务订购协议（摘要 · 演示）</h4>
+    <p>本页面为演示环境协议摘要：正式协议将在订单确认后以电子合同形式签署，涵盖服务范围、SLA 保障、数据安全与保密条款。下单即视为同意绪上科技以电话 / 短信 / 邮件方式与您联系订单履约事宜。</p>
+    <button class="btn btn-primary btn-block" id="agreeOk">我已知晓</button>
+  </div>
+</div>
+
+<script src="js/main.js"></script>
+<script src="js/order.js"></script>
+</body>
+</html>
